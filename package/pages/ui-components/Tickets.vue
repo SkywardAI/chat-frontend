@@ -7,10 +7,10 @@ import Chat from '@/components/ui-components/tickets/Chat.vue';
 
 <template>
 	<div class="flex chat-container">
-		<div class="max-w-80">
+		<div class="max-w-80 ">
 			<TicketsList></TicketsList>
 		</div>
-		<div class="flex-1">
+		<div class="flex-1 overflow-hidden">
 			<Chat></Chat>
 		</div>
 	</div>

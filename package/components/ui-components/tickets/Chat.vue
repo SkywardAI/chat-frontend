@@ -12,15 +12,17 @@ const genMessage = (text: string, role = 'master') => {
 	}
 }
 
-const messages = ref([genMessage(genSentence())])
+const messages = ref([genMessage(genSentence()), genMessage(genSentence()), genMessage(genSentence()), genMessage(genSentence()), genMessage(genSentence())])
 
 
 const inputContent = ref('')
 
 const inputRef = ref()
 const messageRef = ref()
+const chatAreaRef = ref()
 const scrollToLatestMessage = () => {
-	messageRef.value.querySelector('.mb-2:last-child').scrollIntoView()
+	const height = parseInt(getComputedStyle(messageRef.value).height)
+	chatAreaRef.value.scrollTop = height
 }
 const answer = () => {
 	const ans = genMessage(genSentence(), 'rob')
@@ -55,12 +57,12 @@ const onClick = () => {
 
 const keyDownHandler = (e: KeyboardEvent) => {
 	if (e.code !== 'Enter') return
-
 	sendMessage(inputContent.value)
 }
 onMounted(() => {
 	// 滚动至最后一条对话
 	scrollToLatestMessage()
+
 	// 
 	inputRef.value.addEventListener('keypress', keyDownHandler)
 })
@@ -74,13 +76,13 @@ onBeforeUnmount(() => {
 <template>
 	<div class="w-full h-full shadow-light-50 shadow-right relative">
 		<div class="bg-white px-2 py-4 border-b-gray-300 border-b-1">message</div>
-		<div class="relative chat-area  h-full overflow-auto">
+		<div class="relative chat-area  h-full overflow-auto" ref="chatAreaRef">
 			<div class="w-full h-full p-2">
-				<!-- <div class="pb-[92px]" ref="messageRef"> -->
-				<div class="pb-23" ref="messageRef">
-					<div class="mb-2 w-full" v-if="isResolved">
+				<div class="pb-27" ref="messageRef">
+					<div class="mb-2 w-full sticky top-0 left-0" v-if="isResolved">
 						<v-btn class="w-full absolute !bg-green-500 !text-white" :rounded="0" :flat="true">mark as resolved</v-btn>
 					</div>
+
 					<Message v-for="item in messages" :key="item.id" :data="item" class="mb-2"></Message>
 				</div>
 			</div>
