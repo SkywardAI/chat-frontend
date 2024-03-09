@@ -1,3 +1,12 @@
+# How to start
+```
+git clone https://github.com/SkywardAI/chat-frontend.git
+cd ./chat-frontend/package
+npm install
+npm run dev
+```
+
+
 # Materialpro-nuxtjs-free
 Free NuxtJs 3 + Vuetify3 Admin Dashboard Template
 
