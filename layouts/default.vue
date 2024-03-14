@@ -22,7 +22,7 @@ onMounted(() => {
             <v-app-bar elevation="0" color="primary">
                 <div class="pe-5">
                     <div class="d-sm-flex d-none">
-                        <LayoutLogo/>
+                        <!-- <LayoutLogo/> -->
                     </div>
                     <div class="pr-2 pt-2 d-sm-none d-flex">
                         <LayoutLogoIcon />
@@ -36,13 +36,13 @@ onMounted(() => {
                 <!-- ---------------------------------------------- -->
                 <!---Sidebar -->
                 <!-- ---------------------------------------------- -->
-                <v-navigation-drawer left :permanent="mdAndUp" class="leftSidebar" elevation="10" app :temporary="mdAndDown" v-model="drawer"
-                    expand-on-hover>
+                <v-navigation-drawer left :permanent="mdAndUp" class="leftSidebar" elevation="10" app
+                    :temporary="mdAndDown" v-model="drawer" expand-on-hover>
                     <LayoutSidebar />
                 </v-navigation-drawer>
                 <v-container fluid class="page-wrapper">
                     <div class="maxWidth">
-                        <NuxtPage  />
+                        <NuxtPage />
                     </div>
                 </v-container>
             </v-main>

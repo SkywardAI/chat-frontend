@@ -5,7 +5,8 @@ import {
   BoxMultiple1Icon,
   AdjustmentsHorizontalIcon,
   LayoutDashboardIcon,
-  MessageCircleIcon
+  MessageCircleIcon,
+  SettingsIcon
 
 } from 'vue-tabler-icons';
 
@@ -28,44 +29,26 @@ export interface menu {
 const sidebarItem: menu[] = [
   { header: 'Home' },
   {
-    title: "Dashboard",
+    title: "Tickets",
     icon: LayoutDashboardIcon,
     to: "/",
   },
   { header: 'Utilities' },
   {
-    title: 'tickets',
+    title: 'Tickets',
     icon: MessageCircleIcon,
     to: '/ui-components/tickets'
   },
   {
-    title: "Alert",
-    icon: AlertCircleIcon,
-    to: "/ui-components/alerts",
+    title: 'Customize',
+    icon: SettingsIcon,
+    to: '/ui-components/custom'
   },
   {
-    title: "Button",
-    icon: CircleDotIcon,
-    to: "/ui-components/buttons",
-  },
-  {
-    title: "Cards",
-    icon: BoxMultiple1Icon,
-    to: "/ui-components/cards",
-  },
-  {
-    title: "Curousel",
-    icon: AdjustmentsHorizontalIcon,
-    to: "/ui-components/curousel",
-  },
-  {
-    title: "Tables",
-    icon: BorderAllIcon,
-    to: "/ui-components/tabels",
-  },
-
-
-
+    title: 'Analytics',
+    icon: MessageCircleIcon,
+    to: '/ui-components/analytics'
+  }
 ];
 
 export default sidebarItem;
