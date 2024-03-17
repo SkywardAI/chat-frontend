@@ -1,8 +1,18 @@
 name: CI
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ main ]
+    branches:
+      - 'feature/**'
+      - 'feat/**'
+      - 'fix/**'
+  pull_request:
+    branches:
+      - 'feature/**'
+      - 'feat/**'
+      - 'fix/**'
+
 
 jobs:
   build:
@@ -22,25 +32,23 @@ jobs:
 
   code_quality:
     runs-on: ubuntu-latest
-    requires: build
+    needs: build
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
         run: npm install
       - name: Run ESLint (same as build)
-        with:
-          node-version: '14'
-        run: npm test
+        run: npm ci
 
   docker_build:
     runs-on: ubuntu-latest
-    requires: [build, code_quality]
+    needs: [build, code_quality]
     steps:
       - uses: actions/checkout@v3
-      - name: Login to Docker Hub (optional)
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+      # - name: Login to Docker Hub (optional)
+      #   uses: docker/login-action@v2
+      #   with:
+      #     username: ${{ secrets.DOCKER_USERNAME }}
+      #     password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker image
         run: docker build -t gclub/rebel .
