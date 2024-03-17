@@ -1,7 +1,10 @@
 <script setup lang='ts'>
 import { genSentence } from '~/tools/genWord';
 import Message from './Message.vue'
-const isResolved = ref(!false)
+import request from '~/tools/request';
+import { MessageRes } from './type';
+import { useTicketStore } from '~/store/ticket';
+const isResolved = ref(false)
 const isCompleted = ref(true)
 const genMessage = (text: string, role = 'master') => {
 	return {
@@ -12,28 +15,52 @@ const genMessage = (text: string, role = 'master') => {
 	}
 }
 
-const messages = ref([genMessage(genSentence()), genMessage(genSentence()), genMessage(genSentence()), genMessage(genSentence()), genMessage(genSentence())])
-
+// const messages = ref([genMessage(genSentence()), genMessage(genSentence()), genMessage(genSentence()), genMessage(genSentence()), genMessage(genSentence())])
+const messages = ref<ReturnType<typeof genMessage>[]>([])
 
 const inputContent = ref('')
 
 const inputRef = ref()
 const messageRef = ref()
 const chatAreaRef = ref()
+
+const sessionId = ref()
 const scrollToLatestMessage = () => {
 	const height = parseInt(getComputedStyle(messageRef.value).height)
 	chatAreaRef.value.scrollTop = height
 }
 const answer = () => {
-	const ans = genMessage(genSentence(), 'rob')
-	setTimeout(() => {
-		messages.value.push(ans)
+	// const ans = genMessage(genSentence(), 'rob')
+	// setTimeout(() => {
+	// 	messages.value.push(ans)
 
-		isCompleted.value = true
-		nextTick(() => {
-			scrollToLatestMessage()
+	// 	isCompleted.value = true
+	// 	nextTick(() => {
+	// 		scrollToLatestMessage()
+	// 	})
+	// }, 2000);
+	request('/chat', {
+		method: 'POST',
+		body: JSON.stringify({
+			message: 'message'
+		}),
+		headers: {
+			"Content-Type": "application/json",
+		}
+	}).then(res => {
+		return res.json()
+	}).then((res: MessageRes) => {
+		messages.value.push({
+			message: res.message,
+			role: 'rob',
+			id: Date.now() + '',
+			createTime: '2012'
 		})
-	}, 2000);
+
+		sessionId.value = res.sessionId
+	}).finally(() => {
+		isCompleted.value = true
+	})
 
 }
 const sendMessage = (message: string) => {
@@ -47,7 +74,6 @@ const sendMessage = (message: string) => {
 
 	nextTick(() => {
 		scrollToLatestMessage()
-
 		answer()
 	})
 }
@@ -71,6 +97,26 @@ onBeforeUnmount(() => {
 	inputRef.value.removeEventListener('keypress', keyDownHandler)
 })
 
+const getTicketChatList = (id: string) => {
+	request(`/chat/history/${id}`, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	}).then(res => {
+		return res.json()
+	}).then(res => {
+		console.log('res :>> ', res);
+	})
+}
+const ticketsStore = useTicketStore()
+
+watch(() => ticketsStore.currentSessionId, (id) => {
+	if (id) {
+		getTicketChatList(id)
+	}
+})
+
 </script>
 
 <template>
@@ -83,7 +129,14 @@ onBeforeUnmount(() => {
 						<v-btn class="w-full absolute !bg-green-500 !text-white" :rounded="0" :flat="true">mark as resolved</v-btn>
 					</div>
 
-					<Message v-for="item in messages" :key="item.id" :data="item" class="mb-2"></Message>
+					<template v-if="messages.length">
+						<Message v-for="item in messages" :key="item.id" :data="item" class="mb-2"></Message>
+
+					</template>
+					<div v-else-if="!ticketsStore.currentSessionId" class="text-center p-2 leading-10">
+						select ticket on left
+					</div>
+					<div v-else class="text-center p-2 leading-10">no data</div>
 				</div>
 			</div>
 		</div>
