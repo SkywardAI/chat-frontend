@@ -1,3 +1,6 @@
+
+[![CI](https://github.com/SkywardAI/chat-frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/SkywardAI/chat-frontend/actions/workflows/ci.yml)
+
 # Nuxt 3 Minimal Starter
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
