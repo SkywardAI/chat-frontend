@@ -14,6 +14,3 @@ COPY --from=build-stage /app/ng/ /etc/nginx/conf.d/
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
-# CMD ["nginx"]
-# EXPOSE 3000
-# CMD [ "node", "app.js" ]

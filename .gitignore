@@ -1,10 +1,5 @@
-./**/node_modules
-
-/**/.DS_Store
-
-/nuxt
-.nuxt/
-.output/
+.nuxt
+.output
 
 .DS_Store
 .devcontainer
