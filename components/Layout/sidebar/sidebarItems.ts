@@ -35,7 +35,7 @@ const sidebarItem: menu[] = [
   },
   { header: 'Utilities' },
   {
-    title: 'Tickets',
+    title: 'Livechat',
     icon: MessageCircleIcon,
     to: '/ui-components/tickets'
   },

@@ -1,8 +1,10 @@
-/**/node_modules
+./**/node_modules
 
 /**/.DS_Store
 
 /nuxt
+.nuxt/
+.output/
 
 .DS_Store
 .devcontainer

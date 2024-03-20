@@ -5,7 +5,9 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "build:docker": "docker build -t ghcr.io/rebel:latest .",
+    "start:docker": "docker run -it --rm -p 80:80  ghcr.io/rebel"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.11.4",

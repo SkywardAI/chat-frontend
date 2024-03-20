@@ -19,7 +19,8 @@ export default defineNuxtConfig({
     transpile: ["vuetify"],
   },
   nitro: {
-    serveStatic: true,
+    static: true,
+    // serveStatic: true,
     // routeRules: {
     //   '/api': { proxy: 'http://localhost:8001/' },
 
@@ -38,6 +39,5 @@ export default defineNuxtConfig({
     //   }
     // }
   },
-  sourcemap: { server: false, client: false },
-  devServerHandlers: []
+  sourcemap: { server: false, client: false }
 });
