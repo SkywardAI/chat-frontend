@@ -1,5 +1,4 @@
-name: CI
-
+name: 'Rebel CI/CD 🚀'
 on:
   workflow_dispatch:
   push:
@@ -16,10 +15,10 @@ on:
 
 jobs:
   build:
+    name: 'Build 🏗️'
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
@@ -39,14 +38,23 @@ jobs:
   #       run: npm ci
 
   docker_build:
+    name: 'Docker Build 🐳'
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v3
-      # - name: Login to Docker Hub (optional)
-      #   uses: docker/login-action@v2
-      #   with:
-      #     username: ${{ secrets.DOCKER_USERNAME }}
-      #     password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: actions/checkout@v4
+      - name: Login to Github Container Registry
+        uses: docker/login-action@v3
+        if: github.event_name != 'pull_request' && startsWith(github.ref, 'refs/tags/') && success()
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Docker image
-        run: docker build -t gclub/rebel .
+        if: startsWith(github.ref, 'refs/tags/') != true && success()
+        run: |
+          docker build -t ghcr.io/${{ secrets.NAMESPACE }}/${{ secrets.IMAGE_NAME }}:${GITHUB_SHA::7} .
+      - name: Push Docker image
+        if: github.event_name != 'pull_request' && startsWith(github.ref, 'refs/tags/') && success()
+        run: |
+          docker push ghcr.io/${{ secrets.NAMESPACE }}/${{ secrets.IMAGE_NAME }}:${GITHUB_REF/refs\/tags\//}
