@@ -1,16 +1,10 @@
 name: 'Rebel CI/CD 🚀'
 on:
-  workflow_dispatch:
   push:
     branches:
-      - 'feature/**'
-      - 'feat/**'
-      - 'fix/**'
-  pull_request:
-    branches:
-      - 'feature/**'
-      - 'feat/**'
-      - 'fix/**'
+      - 'main'
+    tags:
+      - 'v*'
 
 
 jobs:
