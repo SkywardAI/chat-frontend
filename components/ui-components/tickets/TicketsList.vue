@@ -3,18 +3,18 @@ import request from '~/tools/request';
 import TicketCard from './TicketCard.vue';
 
 const data = ref([
-	{
-		name: 'Justin Bieber',
-		id: '1',
-		time: '1 year ago',
-		content: 'how are you, i\'m fine thank you, and you?',
-	},
-	{
-		name: 'Justin',
-		id: '2',
-		time: '1 week ago',
-		content: 'hi',
-	},
+	// {
+	// 	name: 'Justin Bieber',
+	// 	id: '1',
+	// 	time: '1 year ago',
+	// 	content: 'how are you, i\'m fine thank you, and you?',
+	// },
+	// {
+	// 	name: 'Justin',
+	// 	id: '2',
+	// 	time: '1 week ago',
+	// 	content: 'hi',
+	// },
 ])
 
 const ticketWrapRef = ref()
