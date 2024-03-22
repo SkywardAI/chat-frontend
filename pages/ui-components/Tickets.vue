@@ -1,7 +1,10 @@
 <script setup lang="ts">
-
 import TicketsList from '@/components/ui-components/tickets/TicketsList.vue';
 import Chat from '@/components/ui-components/tickets/Chat.vue';
+
+defineProps<{
+	chat: boolean
+}>()
 
 </script>
 

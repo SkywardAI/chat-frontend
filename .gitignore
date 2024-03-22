@@ -1,5 +1,7 @@
 .nuxt
 .output
+**/node_modules
+**/.nuxt
 
 .DS_Store
 .devcontainer
