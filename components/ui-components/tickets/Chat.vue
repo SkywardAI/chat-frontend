@@ -4,6 +4,13 @@ import Message from './Message.vue'
 import request from '~/tools/request';
 import { MessageRes } from './type';
 import { useTicketStore } from '~/store/ticket';
+
+const props = withDefaults(defineProps<{
+	chat: boolean
+}>(), {
+	chat: true
+})
+
 const isResolved = ref(false)
 const isCompleted = ref(true)
 const genMessage = (text: string, role = 'master') => {
@@ -89,12 +96,17 @@ onMounted(() => {
 	// 滚动至最后一条对话
 	scrollToLatestMessage()
 
-	// 
-	inputRef.value.addEventListener('keypress', keyDownHandler)
+	//
+	if (props.chat) {
+		inputRef.value.addEventListener('keypress', keyDownHandler)
+	}
+
 })
 
 onBeforeUnmount(() => {
-	inputRef.value.removeEventListener('keypress', keyDownHandler)
+	if (props.chat) {
+		inputRef.value.removeEventListener('keypress', keyDownHandler)
+	}
 })
 
 const getTicketChatList = (id: string) => {
@@ -140,7 +152,7 @@ watch(() => ticketsStore.currentSessionId, (id) => {
 				</div>
 			</div>
 		</div>
-		<div class="absolute bottom-0 left-0 w-full p-2 bg-white">
+		<div class="absolute bottom-0 left-0 w-full p-2 bg-white" v-if="props.chat">
 			<v-text-field v-model="inputContent" label="input" append-inner-icon="mdi-send" ref="inputRef"
 				@click:append-inner="onClick" :disabled="!isCompleted"></v-text-field>
 		</div>

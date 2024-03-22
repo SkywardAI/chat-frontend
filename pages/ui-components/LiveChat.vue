@@ -3,5 +3,5 @@ import Tickets from './Tickets.vue'
 
 </script>
 <template>
-	<Tickets :chat="false"></Tickets>
+	<Tickets :chat="true"></Tickets>
 </template>

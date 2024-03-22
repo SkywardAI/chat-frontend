@@ -2,7 +2,7 @@
 import TicketsList from '@/components/ui-components/tickets/TicketsList.vue';
 import Chat from '@/components/ui-components/tickets/Chat.vue';
 
-defineProps<{
+const props = defineProps<{
 	chat: boolean
 }>()
 
@@ -14,7 +14,7 @@ defineProps<{
 			<TicketsList></TicketsList>
 		</div>
 		<div class="flex-1 overflow-hidden">
-			<Chat></Chat>
+			<Chat :chat="props.chat"></Chat>
 		</div>
 	</div>
 </template>

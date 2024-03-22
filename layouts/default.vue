@@ -41,7 +41,7 @@ onMounted(() => {
                     <LayoutSidebar />
                 </v-navigation-drawer>
                 <v-container fluid class="page-wrapper">
-                    <div class="maxWidth">
+                    <div class="maxWidth shadow-right">
                         <NuxtPage />
                     </div>
                 </v-container>
