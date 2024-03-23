@@ -28,8 +28,11 @@ const getTickets = () => {
 	}).then(res => {
 		return res.json()
 	}).then(res => {
-		// data.value = res
+		data.value = res
+	}).then(() => {
 		selectDefaultTicket()
+	}).catch(() => {
+
 	})
 }
 

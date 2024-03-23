@@ -1,8 +1,8 @@
 export interface IMessage {
 	id: string,
 	message: string,
-	role: string, // 'master' | 'rob',
-	createTime: string
+	type: string, // 'in' | 'out',
+	// createTime: string
 }
 
 export type MessageRes = {

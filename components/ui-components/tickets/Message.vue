@@ -5,7 +5,7 @@ type Props = {
 	data: IMessage
 }
 const props = defineProps<Props>()
-const isMaster = props.data.role === 'master'
+const isMaster = props.data.type === 'in'
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const isMaster = props.data.role === 'master'
 			<UserIcon class="m-auto" v-if="isMaster"></UserIcon>
 			<RobotIcon class="m-auto" v-else></RobotIcon>
 		</div>
-		<div class="message p-2 " :class="props.data.role === 'master' ? 'bg-blue-500 text-white' : 'bg-white'">
+		<div class="message p-2 " :class="isMaster ? 'bg-blue-500 text-white' : 'bg-white'">
 			{{ props.data.message }}
 		</div>
 		<!-- <div class="bg-white rounded p-2" v-else>

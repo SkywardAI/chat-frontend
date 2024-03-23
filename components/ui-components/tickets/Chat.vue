@@ -119,6 +119,7 @@ const getTicketChatList = (id: string) => {
 		return res.json()
 	}).then(res => {
 		console.log('res :>> ', res);
+		messages.value = res
 	})
 }
 const ticketsStore = useTicketStore()
