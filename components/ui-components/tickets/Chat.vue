@@ -13,10 +13,10 @@ const props = withDefaults(defineProps<{
 
 const isResolved = ref(false)
 const isCompleted = ref(true)
-const genMessage = (text: string, role = 'master') => {
+const genMessage = (text: string, role = 'in') => {
 	return {
 		id: Date.now() + '',
-		role: role,
+		type: role,
 		message: text,
 		createTime: Date.now() + ''
 	}
@@ -37,15 +37,6 @@ const scrollToLatestMessage = () => {
 	chatAreaRef.value.scrollTop = height
 }
 const answer = () => {
-	// const ans = genMessage(genSentence(), 'rob')
-	// setTimeout(() => {
-	// 	messages.value.push(ans)
-
-	// 	isCompleted.value = true
-	// 	nextTick(() => {
-	// 		scrollToLatestMessage()
-	// 	})
-	// }, 2000);
 	request('/chat', {
 		method: 'POST',
 		body: JSON.stringify({
@@ -59,8 +50,8 @@ const answer = () => {
 	}).then((res: MessageRes) => {
 		messages.value.push({
 			message: res.message,
-			role: 'rob',
-			id: Date.now() + '',
+			type: 'out',
+			id: res.sessionId,
 			createTime: '2012'
 		})
 
@@ -146,8 +137,11 @@ watch(() => ticketsStore.currentSessionId, (id) => {
 						<Message v-for="item in messages" :key="item.id" :data="item" class="mb-2"></Message>
 
 					</template>
-					<div v-else-if="!ticketsStore.currentSessionId" class="text-center p-2 leading-10">
+					<div v-else-if="!ticketsStore.currentSessionId && !props.chat" class="text-center p-2 leading-10">
 						select ticket on left
+					</div>
+					<div v-else-if="props.chat">
+						<!-- message tips -->
 					</div>
 					<div v-else class="text-center p-2 leading-10">no data</div>
 				</div>
