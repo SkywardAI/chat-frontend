@@ -25,6 +25,7 @@ const isActive = computed(() => {
 const onTicketClick = (id: string) => {
 	// getTicketChatList(id)
 	ticketsStore.currentSessionId = id
+	ticketsStore.setCurrentTicket({ ...props.data, })
 }
 
 </script>

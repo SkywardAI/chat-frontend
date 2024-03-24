@@ -114,6 +114,9 @@ const getTicketChatList = (id: string) => {
 	})
 }
 const ticketsStore = useTicketStore()
+const title = computed(() => {
+	return ticketsStore.currentTicket.name
+})
 
 watch(() => ticketsStore.currentSessionId, (id) => {
 	if (id) {
@@ -125,7 +128,7 @@ watch(() => ticketsStore.currentSessionId, (id) => {
 
 <template>
 	<div class="w-full h-full shadow-light-50 shadow-right relative">
-		<div class="bg-white px-2 py-4 border-b-gray-300 border-b-1">message</div>
+		<div class="bg-white px-2 py-4 border-b-gray-300 border-b-1">{{ title || 'message' }}</div>
 		<div class="relative chat-area  h-full overflow-auto" ref="chatAreaRef">
 			<div class="w-full h-full p-2">
 				<div class="pb-27" ref="messageRef">
