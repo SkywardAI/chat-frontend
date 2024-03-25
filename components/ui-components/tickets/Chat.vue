@@ -36,12 +36,16 @@ const scrollToLatestMessage = () => {
 	const height = parseInt(getComputedStyle(messageRef.value).height)
 	chatAreaRef.value.scrollTop = height
 }
-const answer = () => {
+const answer = (message: string) => {
+	const body = JSON.stringify(sessionId.value ? {
+		message: message,
+		sessionId: sessionId.value
+	} : {
+		message
+	})
 	request('/chat', {
 		method: 'POST',
-		body: JSON.stringify({
-			message: 'message'
-		}),
+		body: body,
 		headers: {
 			"Content-Type": "application/json",
 		}
@@ -72,7 +76,7 @@ const sendMessage = (message: string) => {
 
 	nextTick(() => {
 		scrollToLatestMessage()
-		answer()
+		answer(message)
 	})
 }
 const onClick = () => {
