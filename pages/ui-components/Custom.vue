@@ -4,7 +4,7 @@
 </script>
 <template>
 	<div>
-		this is customize module
+		TODO
 	</div>
 
 </template>
