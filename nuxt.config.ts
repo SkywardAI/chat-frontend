@@ -27,8 +27,8 @@ export default defineNuxtConfig({
     // },
     devProxy: {
       "/api": {
-        // target: "http://localhost:8001/api", // 这里是接口地址
-        target: "http://108.160.140.213:8001/api", // 这里是接口地址
+        target: "http://localhost:8001/api", // 这里是接口地址
+        // target: "http://108.160.140.213:8001/api", // 这里是接口地址
         changeOrigin: true,
       },
     },
