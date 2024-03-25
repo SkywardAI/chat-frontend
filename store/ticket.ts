@@ -15,6 +15,10 @@ export const useTicketStore = defineStore('ticket', {
 
 		setCurrentTicket(data: ITicket) {
 			this.$state.currentTicket = data
+		},
+		clearTicket() {
+			this.$state.currentSessionId = ''
+			this.$state.currentTicket = {} as ITicket
 		}
 	},
 })

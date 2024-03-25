@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { markRaw, watch } from "vue";
 import sidebarItems from "./sidebarItems";
+import { useTicketStore } from "~/store/ticket";
 
 const sidebarMenu = markRaw(sidebarItems);
+const ticketsStore = useTicketStore()
+const onMenuClick = () => {
+  ticketsStore.clearTicket()
+}
 </script>
 
 <template>
@@ -17,7 +22,7 @@ const sidebarMenu = markRaw(sidebarItems);
         <!---Item Sub Header -->
         <LayoutSidebarNavGroup :item="item" v-if="item.header" :key="item.title" />
         <!---Single Item-->
-        <LayoutSidebarNavItem :item="item" v-else class="leftPadding" />
+        <LayoutSidebarNavItem :item="item" v-else class="leftPadding" @click="onMenuClick" />
         <!---End Single Item-->
       </template>
     </v-list>
