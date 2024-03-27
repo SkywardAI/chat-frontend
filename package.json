@@ -15,7 +15,7 @@
     "tailwindcss": "^3.4.1"
   },
   "dependencies": {
-    "@mdi/font": "6.5.95",
+    "@mdi/font": "7.4.47",
     "@nuxtjs/axios": "^5.13.6",
     "@tabler/icons": "2.10.0",
     "apexcharts": "3.36.3",
