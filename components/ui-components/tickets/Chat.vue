@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import { genSentence } from '~/tools/genWord';
+import { Promotion } from '@element-plus/icons-vue'
 import Message from './Message.vue'
 import request from '~/tools/request';
 import { MessageRes } from './type';
@@ -45,18 +46,16 @@ const answer = (message: string) => {
 	})
 	request('/chat', {
 		method: 'POST',
-		body: body,
-		headers: {
-			"Content-Type": "application/json",
-		}
-	}).then(res => {
-		return res.json()
+		body,
 	}).then((res: MessageRes) => {
+		if (!res) {
+			return
+		}
 		messages.value.push({
 			message: res.message,
 			type: 'out',
 			id: res.sessionId,
-			createTime: '2012'
+			createTime: ''
 		})
 
 		sessionId.value = res.sessionId
@@ -111,9 +110,6 @@ const getTicketChatList = (id: string) => {
 			'Content-Type': 'application/json'
 		}
 	}).then(res => {
-		return res.json()
-	}).then(res => {
-		console.log('res :>> ', res);
 		messages.value = res
 	})
 }
@@ -155,8 +151,13 @@ watch(() => ticketsStore.currentSessionId, (id) => {
 			</div>
 		</div>
 		<div class="absolute bottom-0 left-0 w-full p-2 bg-white" v-if="props.chat">
-			<v-text-field v-model="inputContent" label="input" append-inner-icon="mdi-send" ref="inputRef"
+			<v-text-field v-model="inputContent" placeholder="input" append-inner-icon="mdi-send" ref="inputRef"
 				@click:append-inner="onClick" :disabled="!isCompleted"></v-text-field>
+			<!-- <el-input v-model="inputContent" ref="inputRef" placeholder="input" @click:append-inner="onClick"
+				:disabled="!isCompleted">
+				<template #append>
+					<el-button :icon="Promotion" />
+				</template></el-input> -->
 		</div>
 
 	</div>

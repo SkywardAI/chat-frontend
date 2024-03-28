@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import request from '~/tools/request';
 import TicketCard from './TicketCard.vue';
+import { ITicket } from './type';
 
 const data = ref([
 	// {
@@ -8,12 +9,6 @@ const data = ref([
 	// 	id: '1',
 	// 	time: '1 year ago',
 	// 	content: 'how are you, i\'m fine thank you, and you?',
-	// },
-	// {
-	// 	name: 'Justin',
-	// 	id: '2',
-	// 	time: '1 week ago',
-	// 	content: 'hi',
 	// },
 ])
 
@@ -26,9 +21,12 @@ const getTickets = () => {
 			"Content-Type": 'application/json'
 		}
 	}).then(res => {
-		return res.json()
-	}).then(res => {
-		data.value = res
+		data.value = res.map((item: ITicket) => {
+			return {
+				...item,
+				createdAt: item.createdAt.split('T')[0]
+			}
+		})
 	}).then(() => {
 		selectDefaultTicket()
 	}).catch(() => {

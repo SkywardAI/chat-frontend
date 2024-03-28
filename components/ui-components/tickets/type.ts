@@ -9,3 +9,9 @@ export type MessageRes = {
 	message: string,
 	sessionId: string
 }
+
+export interface ITicket {
+	id: string,
+	name: string,
+	createdAt: string
+}
