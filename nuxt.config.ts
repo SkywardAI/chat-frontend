@@ -1,7 +1,12 @@
 import vuetify from "vite-plugin-vuetify";
 export default defineNuxtConfig({
   // modules: ['@nuxtjs/tailwindcss', '@nuxtjs/axios'],
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss', '@element-plus/nuxt', (_options, nuxt) => {
+    nuxt.hooks.hook('vite:extendConfig', (config) => {
+      // @ts-expect-error
+      config.plugins.push(vuetify({ autoImport: true }))
+    })
+  }],
   css: [
     '@/assets/css/unit.css'
   ],

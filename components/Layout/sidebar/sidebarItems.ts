@@ -39,11 +39,11 @@ const sidebarItem: menu[] = [
     icon: MessageCircleIcon,
     to: '/ui-components/livechat'
   },
-  // {
-  //   title: 'Customize',
-  //   icon: SettingsIcon,
-  //   to: '/ui-components/custom'
-  // },
+  {
+    title: 'Customize',
+    icon: SettingsIcon,
+    to: '/ui-components/custom'
+  },
   // {
   //   title: 'Analytics',
   //   icon: MessageCircleIcon,

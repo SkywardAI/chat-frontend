@@ -10,6 +10,7 @@
     "start:docker": "docker run -it --rm -p 80:80  ghcr.io/rebel"
   },
   "devDependencies": {
+    "@element-plus/nuxt": "^1.0.8",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "nuxt": "3.7.4",
     "tailwindcss": "^3.4.1"
@@ -19,6 +20,7 @@
     "@nuxtjs/axios": "^5.13.6",
     "@tabler/icons": "2.10.0",
     "apexcharts": "3.36.3",
+    "element-plus": "^2.6.2",
     "pinia": "^2.1.7",
     "sass": "1.56.1",
     "vue": "3.3.4",

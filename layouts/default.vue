@@ -40,8 +40,8 @@ onMounted(() => {
                     :temporary="mdAndDown" v-model="drawer" expand-on-hover>
                     <LayoutSidebar />
                 </v-navigation-drawer>
-                <v-container fluid class="page-wrapper">
-                    <div class="maxWidth shadow-right">
+                <v-container fluid class="page-wrapper ">
+                    <div class="maxWidth shadow-right bg-white rounded overflow-hidden">
                         <NuxtPage />
                     </div>
                 </v-container>

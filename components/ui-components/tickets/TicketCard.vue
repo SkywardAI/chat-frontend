@@ -1,7 +1,6 @@
 <script setup lang='ts'>
 import { UserIcon } from 'vue-tabler-icons'
 import { useTicketStore } from '~/store/ticket';
-import request from '~/tools/request';
 
 const props = defineProps<{
 	data: any
@@ -40,7 +39,7 @@ const onTicketClick = (id: string) => {
 				<div class="overflow-hidden text-ellipsis whitespace-nowrap">{{ props.data.content }}</div>
 			</div>
 			<div>
-				<span class="text-xs text-gray-500">1 year ago</span>
+				<span class="text-xs text-gray-500">{{ props.data.createdAt }}</span>
 			</div>
 		</div>
 
