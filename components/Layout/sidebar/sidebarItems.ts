@@ -44,11 +44,24 @@ const sidebarItem: menu[] = [
     icon: SettingsIcon,
     to: '/ui-components/custom'
   },
-  // {
-  //   title: 'Analytics',
-  //   icon: MessageCircleIcon,
-  //   to: '/ui-components/analytics'
-  // }
+  // load model
+  /**
+   * TODO: select
+   */
+  {
+    title: 'Training',
+    icon: SettingsIcon,
+    to: '/ui-components/train'
+  },
+  // chart
+  /**
+   * TODO: chart demo: heatmap / pie
+   */
+  {
+    title: 'Analytics',
+    icon: MessageCircleIcon,
+    to: '/ui-components/analytics'
+  }
 ];
 
 export default sidebarItem;
