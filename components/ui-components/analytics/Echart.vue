@@ -1,5 +1,9 @@
 <template>
-	<div ref="chartRef" :style="'height:' + height + 'px'" class="w-full"></div>
+  <div
+    ref="chartRef"
+    :style="'height:' + height + 'px'"
+    class="w-full"
+  />
 </template>
 
 <script setup lang="ts">

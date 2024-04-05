@@ -6,12 +6,16 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "build:docker": "docker build -t ghcr.io/rebel:latest .",
     "start:docker": "docker run -it --rm -p 80:80  ghcr.io/rebel"
   },
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.8",
+    "@nuxt/eslint-config": "^0.2.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "eslint": "^8.57.0",
     "nuxt": "3.7.4",
     "tailwindcss": "^3.4.1"
   },

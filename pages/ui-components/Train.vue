@@ -1,9 +1,9 @@
 <script setup lang='ts'>
-import type { ElForm } from 'element-plus';
+import type { ElForm,  } from 'element-plus';
 import request from '~/tools/request';
 
 const form = reactive({
-	model: ''
+	model: '',
 })
 const modelList = [
 	{
@@ -14,7 +14,8 @@ const modelList = [
 const formRef = ref<InstanceType<typeof ElForm>>()
 
 const onSubmit = () => {
-	formRef.value?.validate().then((data) => {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	formRef.value?.validate().then((_data: any) => {
 		request('/loadModel/', {
 			method: 'PATCH',
 			body: {
@@ -29,21 +30,41 @@ const onSubmit = () => {
 
 }
 
+
 </script>
 <template>
-	<div class="train-container p-2">
-		<el-form ref="formRef" :model="form" label-position="top" label-width="auto">
-			<el-form-item label="model" prop="model" :rules="[{ required: true, }]">
-				<el-select v-model="form.model">
-
-					<el-option v-for="item in modelList" :key="item.value" :value="item.value" :label="item.label"> {{
-			item.label }}</el-option>
-				</el-select>
-			</el-form-item>
-		</el-form>
-		<el-button @click="onSubmit" type="primary">submit</el-button>
-	</div>
-
+  <div class="train-container p-2">
+    <el-form
+      ref="formRef"
+      :model="form"
+      label-position="top"
+      label-width="auto"
+    >
+      <el-form-item
+        label="model"
+        prop="model"
+        :rules="[{ required: true, }]"
+      >
+        <el-select v-model="form.model">
+          <el-option
+            v-for="item in modelList"
+            :key="item.value"
+            :value="item.value"
+            :label="item.label"
+          >
+            {{
+              item.label }}
+          </el-option>
+        </el-select>
+      </el-form-item>
+    </el-form>
+    <el-button
+      type="primary"
+      @click="onSubmit"
+    >
+      submit
+    </el-button>
+  </div>
 </template>
 <style lang="scss" scoped>
 .train-container {

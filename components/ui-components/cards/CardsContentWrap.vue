@@ -43,21 +43,25 @@ const messages = ref([
               flat
               theme="dark"
             >
-              <template v-slot:prepend>
-                <v-app-bar-nav-icon></v-app-bar-nav-icon>
+              <template #prepend>
+                <v-app-bar-nav-icon />
               </template>
 
-              <v-toolbar-title class="text-h6"> Messages </v-toolbar-title>
+              <v-toolbar-title class="text-h6">
+                Messages
+              </v-toolbar-title>
 
-              <template v-slot:append>
-                <v-icon icon="mdi-dots-vertical"></v-icon>
+              <template #append>
+                <v-icon icon="mdi-dots-vertical" />
               </template>
             </v-app-bar>
           </v-layout>
         </v-img>
 
         <v-card-text>
-          <div class="font-weight-bold ml-1 mb-2">Today</div>
+          <div class="font-weight-bold ml-1 mb-2">
+            Today
+          </div>
 
           <v-timeline density="compact">
             <v-timeline-item

@@ -50,21 +50,33 @@ onMounted(() => {
 </script>
 
 <template>
-	<div class="w-full bg-white shadow-right h-full overflow-auto">
-		<!-- title -->
-		<div class="p-2 ">
-			<div class="py-2 ">All Tickets</div>
-			<!-- <span class="absolute">
+  <div class="w-full bg-white shadow-right h-full overflow-auto">
+    <!-- title -->
+    <div class="p-2 ">
+      <div class="py-2 ">
+        All Tickets
+      </div>
+      <!-- <span class="absolute">
 			Filter
 		</span> -->
-		</div>
-		<!-- list -->
-		<div v-if="data.length" ref="ticketWrapRef">
-			<TicketCard v-for="item in data" :key="item.id" :data="item" class="shadow-sm"></TicketCard>
-		</div>
-		<div v-else class="w-full p-2 text-center ">
-			no data
-		</div>
-
-	</div>
+    </div>
+    <!-- list -->
+    <div
+      v-if="data.length"
+      ref="ticketWrapRef"
+    >
+      <TicketCard
+        v-for="item in data"
+        :key="item.id"
+        :data="item"
+        class="shadow-sm"
+      />
+    </div>
+    <div
+      v-else
+      class="w-full p-2 text-center "
+    >
+      no data
+    </div>
+  </div>
 </template>
