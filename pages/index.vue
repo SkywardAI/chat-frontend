@@ -4,5 +4,5 @@ import Tickets from './ui-components/Tickets.vue';
 </script>
 
 <template>
-  <Tickets></Tickets>
+  <Tickets />
 </template>

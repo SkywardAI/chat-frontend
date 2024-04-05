@@ -11,22 +11,32 @@ const onMenuClick = () => {
 </script>
 
 <template>
-
   <!-- ---------------------------------------------- -->
   <!---Navigation -->
   <!-- ---------------------------------------------- -->
   <perfect-scrollbar class="scrollnavbar">
-    <v-list class="py-5 px-4 bg-muted" density="compact">
+    <v-list
+      class="py-5 px-4 bg-muted"
+      density="compact"
+    >
       <!---Menu Loop -->
       <template v-for="(item, i) in sidebarMenu">
         <!---Item Sub Header -->
-        <LayoutSidebarNavGroup :item="item" v-if="item.header" :key="item.title" />
+        <LayoutSidebarNavGroup
+          v-if="item.header"
+          :key="item.title"
+          :item="item"
+        />
         <!---Single Item-->
-        <LayoutSidebarNavItem :item="item" v-else class="leftPadding" @click="onMenuClick" />
+        <LayoutSidebarNavItem
+          v-else
+          :key="i"
+          :item="item"
+          class="leftPadding"
+          @click="onMenuClick"
+        />
         <!---End Single Item-->
       </template>
     </v-list>
-
   </perfect-scrollbar>
-
 </template>

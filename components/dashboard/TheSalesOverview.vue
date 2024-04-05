@@ -69,19 +69,26 @@ onMounted(() => {
   <!-- ------------------------------------ -->
   <!-- html -->
   <!-- ------------------------------------ -->
-<VCard class="pa-3" elevation="10">
+  <VCard
+    class="pa-3"
+    elevation="10"
+  >
     <v-card-text>
       <div class="d-sm-flex align-center">
         <div>
-          <h3 class="text-h5 title mb-1">Sales Overview</h3>
-          <h5 class="text-subtitle-1">Ample Admin Vs Pixel Admin</h5>
+          <h3 class="text-h5 title mb-1">
+            Sales Overview
+          </h3>
+          <h5 class="text-subtitle-1">
+            Ample Admin Vs Pixel Admin
+          </h5>
         </div>
         <div class="ml-auto">
           <div class="d-flex align-center">
             <div class="d-flex align-center px-2">
               <span class="text-primary">
                 <span class="text-overline">
-                  <i class="mdi mdi-brightness-1 mx-1"></i>
+                  <i class="mdi mdi-brightness-1 mx-1" />
                 </span>
                 <span class="font-weight-regular">Ample</span>
               </span>
@@ -89,7 +96,7 @@ onMounted(() => {
             <div class="d-flex align-center px-2">
               <span class="text-secondary">
                 <span class="text-overline">
-                  <i class="mdi mdi-brightness-1 mx-1"></i>
+                  <i class="mdi mdi-brightness-1 mx-1" />
                 </span>
                 <span class="font-weight-regular">Pixel Admin</span>
               </span>
@@ -97,10 +104,16 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div v-show="elementVisible" class="mt-5">
+      <div
+        v-show="elementVisible"
+        class="mt-5"
+      >
         <apexchart
-        type="bar" height="400" :options="chartOptions" :series="Chart.series"
-        ></apexchart>
+          type="bar"
+          height="400"
+          :options="chartOptions"
+          :series="Chart.series"
+        />
       </div>
     </v-card-text>
   </VCard>

@@ -6,15 +6,18 @@ interface Options extends Partial<RequestInit> {
 }
 
 
-export default (url: string, options?: Options) => {
+export default (url: string, options?: Options, isEmptyHeader?: boolean) => {
 	url = URL_PREFIX + url
-	const defaultOption = {
-		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json'
-		},
+	const defaultOption = isEmptyHeader ? {
+		method: 'GET'
+	}:{
+		method: "GET",
+		'Content-Type': 'application/json'
 	}
-	const body = typeof options?.body === 'object' ? JSON.stringify(options.body) : options?.body
+	const body =  
+	(typeof options?.body === 'object' && !(options.body instanceof FormData)) ? 
+	JSON.stringify(options.body) 
+	: options?.body
 	const mergeOptions = {
 		...defaultOption,
 		...options,

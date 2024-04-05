@@ -47,5 +47,5 @@ const option = {
 
 </script>
 <template>
-	<Echart :option="option"></Echart>
+  <Echart :option="option" />
 </template>

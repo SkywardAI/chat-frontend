@@ -127,41 +127,77 @@ watch(() => ticketsStore.currentSessionId, (id) => {
 </script>
 
 <template>
-	<div class="w-full h-full shadow-light-50 shadow-right relative">
-		<div class="bg-white px-2 py-4 border-b-gray-300 border-b-1">{{ title || 'message' }}</div>
-		<div class="relative chat-area  h-full overflow-auto" ref="chatAreaRef">
-			<div class="w-full h-full p-2">
-				<div class="pb-27" ref="messageRef">
-					<div class="mb-2 w-full sticky top-0 left-0" v-if="isResolved">
-						<v-btn class="w-full absolute !bg-green-500 !text-white" :rounded="0" :flat="true">mark as resolved</v-btn>
-					</div>
+  <div class="w-full h-full shadow-light-50 shadow-right relative">
+    <div class="bg-white px-2 py-4 border-b-gray-300 border-b-1">
+      {{ title || 'message' }}
+    </div>
+    <div
+      ref="chatAreaRef"
+      class="relative chat-area  h-full overflow-auto"
+    >
+      <div class="w-full h-full p-2">
+        <div
+          ref="messageRef"
+          class="pb-27"
+        >
+          <div
+            v-if="isResolved"
+            class="mb-2 w-full sticky top-0 left-0"
+          >
+            <v-btn
+              class="w-full absolute !bg-green-500 !text-white"
+              :rounded="0"
+              :flat="true"
+            >
+              mark as resolved
+            </v-btn>
+          </div>
 
-					<template v-if="messages.length">
-						<Message v-for="item in messages" :key="item.id" :data="item" class="mb-2"></Message>
-
-					</template>
-					<div v-else-if="!ticketsStore.currentSessionId && !props.chat" class="text-center p-2 leading-10">
-						select ticket on left
-					</div>
-					<div v-else-if="props.chat">
-						<!-- message tips -->
-					</div>
-					<div v-else class="text-center p-2 leading-10">no data</div>
-				</div>
-			</div>
-		</div>
-		<div class="absolute bottom-0 left-0 w-full p-2 bg-white" v-if="props.chat">
-			<v-text-field v-model="inputContent" placeholder="input" append-inner-icon="mdi-send" ref="inputRef"
-				@click:append-inner="onClick" :disabled="!isCompleted"></v-text-field>
-			<!-- <el-input v-model="inputContent" ref="inputRef" placeholder="input" @click:append-inner="onClick"
+          <template v-if="messages.length">
+            <Message
+              v-for="item in messages"
+              :key="item.id"
+              :data="item"
+              class="mb-2"
+            />
+          </template>
+          <div
+            v-else-if="!ticketsStore.currentSessionId && !props.chat"
+            class="text-center p-2 leading-10"
+          >
+            select ticket on left
+          </div>
+          <div v-else-if="props.chat">
+            <!-- message tips -->
+          </div>
+          <div
+            v-else
+            class="text-center p-2 leading-10"
+          >
+            no data
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      v-if="props.chat"
+      class="absolute bottom-0 left-0 w-full p-2 bg-white"
+    >
+      <v-text-field
+        ref="inputRef"
+        v-model="inputContent"
+        placeholder="input"
+        append-inner-icon="mdi-send"
+        :disabled="!isCompleted"
+        @click:append-inner="onClick"
+      />
+      <!-- <el-input v-model="inputContent" ref="inputRef" placeholder="input" @click:append-inner="onClick"
 				:disabled="!isCompleted">
 				<template #append>
 					<el-button :icon="Promotion" />
 				</template></el-input> -->
-		</div>
-
-	</div>
-
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">

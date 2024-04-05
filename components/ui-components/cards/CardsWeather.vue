@@ -25,22 +25,28 @@ const forecast = ref([
   <!-- ----------------------------------------------------------------------------- -->
   <!-- Weather -->
   <!-- ----------------------------------------------------------------------------- -->
-  <v-card class="mx-auto"   elevation="0">
+  <v-card
+    class="mx-auto"
+    elevation="0"
+  >
     <v-card-item title="Florida">
-      <template v-slot:subtitle>
+      <template #subtitle>
         <v-icon
           icon="mdi-alert"
           size="18"
           color="error"
           class="me-1 pb-1"
-        ></v-icon>
+        />
 
         Extreme Weather Alert
       </template>
     </v-card-item>
 
     <v-card-text class="py-0">
-      <v-row align="center" no-gutters>
+      <v-row
+        align="center"
+        no-gutters
+      >
         <v-col
           class="text-h2"
           cols="6"
@@ -48,12 +54,15 @@ const forecast = ref([
           64&deg;F
         </v-col>
 
-        <v-col cols="6" class="text-right">
+        <v-col
+          cols="6"
+          class="text-right"
+        >
           <v-icon
             color="error"
             icon="mdi-weather-hurricane"
             size="88"
-          ></v-icon>
+          />
         </v-col>
       </v-row>
     </v-card-text>
@@ -88,7 +97,7 @@ const forecast = ref([
             hide-details
             show-ticks="always"
             thumb-size="10"
-          ></v-slider>
+          />
         </div>
 
         <v-list class="bg-transparent">
@@ -98,13 +107,12 @@ const forecast = ref([
             :title="item.day"
             :append-icon="item.icon"
             :subtitle="item.temp"
-          >
-          </v-list-item>
+          />
         </v-list>
       </div>
     </v-expand-transition>
 
-    <v-divider></v-divider>
+    <v-divider />
 
     <v-card-actions>
       <v-btn @click="expand = !expand">

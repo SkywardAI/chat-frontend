@@ -25,15 +25,28 @@ const onSubmit = () => {
 
 </script>
 <template>
-	<div class="custom-container p-2">
-		<el-form ref="formRef" :model="form" label-position="top" label-width="auto">
-			<el-form-item label="email" prop="email" :rules="[{ required: true, }]">
-				<el-input v-model="form.email" />
-			</el-form-item>
-		</el-form>
-		<el-button @click="onSubmit" type="primary">submit</el-button>
-	</div>
-
+  <div class="custom-container p-2">
+    <el-form
+      ref="formRef"
+      :model="form"
+      label-position="top"
+      label-width="auto"
+    >
+      <el-form-item
+        label="email"
+        prop="email"
+        :rules="[{ required: true, }]"
+      >
+        <el-input v-model="form.email" />
+      </el-form-item>
+    </el-form>
+    <el-button
+      type="primary"
+      @click="onSubmit"
+    >
+      submit
+    </el-button>
+  </div>
 </template>
 <style lang="scss" scoped>
 .custom-container {

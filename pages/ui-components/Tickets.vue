@@ -9,14 +9,17 @@ const props = defineProps<{
 </script>
 
 <template>
-	<div class="flex chat-container">
-		<div class="w-80" v-if="!props.chat">
-			<TicketsList></TicketsList>
-		</div>
-		<div class="flex-1 overflow-hidden">
-			<Chat :chat="props.chat"></Chat>
-		</div>
-	</div>
+  <div class="flex chat-container">
+    <div
+      v-if="!props.chat"
+      class="w-80"
+    >
+      <TicketsList />
+    </div>
+    <div class="flex-1 overflow-hidden">
+      <Chat :chat="props.chat" />
+    </div>
+  </div>
 </template>
 
 

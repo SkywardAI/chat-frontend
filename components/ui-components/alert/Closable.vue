@@ -3,7 +3,7 @@ import { ref } from 'vue';
 const alert = ref(true);
 </script>
 <template>
-   <div>
+  <div>
     <v-alert
       v-model="alert"
       border="start"
@@ -22,7 +22,9 @@ const alert = ref(true);
     >
       <v-btn
         color="primary"
-        @click="alert = true" flat>
+        flat
+        @click="alert = true"
+      >
         Reset
       </v-btn>
     </div>

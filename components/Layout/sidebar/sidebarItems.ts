@@ -45,18 +45,17 @@ const sidebarItem: menu[] = [
     to: '/ui-components/custom'
   },
   // load model
-  /**
-   * TODO: select
-   */
   {
     title: 'Training',
     icon: SettingsIcon,
     to: '/ui-components/train'
   },
+  {
+    title: 'Data',
+    icon: SettingsIcon,
+    to: '/ui-components/data'
+  },
   // chart
-  /**
-   * TODO: chart demo: heatmap / pie
-   */
   {
     title: 'Analytics',
     icon: MessageCircleIcon,
