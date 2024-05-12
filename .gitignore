@@ -4,5 +4,4 @@
 **/.nuxt
 
 .DS_Store
-.devcontainer
 node_modules
