@@ -1,5 +1,5 @@
 
-[![CI](https://github.com/SkywardAI/chat-frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/SkywardAI/chat-frontend/actions/workflows/ci.yml)
+[![Release Drafter 🚀](https://github.com/SkywardAI/chat-frontend/actions/workflows/release-drafter.yml/badge.svg)](https://github.com/SkywardAI/chat-frontend/actions/workflows/release-drafter.yml)
 
 # Nuxt 3 Minimal Starter
 
