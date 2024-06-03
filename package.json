@@ -33,7 +33,7 @@
     "vue-tabler-icons": "2.9.0",
     "vue3-apexcharts": "1.4.1",
     "vue3-perfect-scrollbar": "1.6.0",
-    "vuetify": "3.3.19",
+    "vuetify": "3.6.8",
     "yup": "0.32.11"
   },
   "overrides": {
