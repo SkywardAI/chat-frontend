@@ -17,11 +17,11 @@ const user = useUser();
       >
         <v-avatar size="35">
           <!-- TODO: add src for empty avatar before login -->
-          <img
+          <v-icon 
+            icon='mdi-account-circle' 
             v-if="!user.isLoggedIn"
-            width="35"
-            alt="No User"
-          >
+            size="35" color="white"
+          ></v-icon>
           <img
             v-else
             src="/images/profile/user2.jpg"

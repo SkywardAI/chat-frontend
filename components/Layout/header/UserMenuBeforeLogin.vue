@@ -22,12 +22,8 @@ import { emailRule, notEmptyRule, testRules } from '~/tools/inputRules';
     })
 
     const isRegister = ref(false);
-    const keepLogin = ref(false)
-
-    // switch between login and register
-    function switchLoginMode() { 
-        isRegister.value = !isRegister.value;
-    }
+    const keepLogin = ref(false);
+    const showPassword = ref(false);
 
     function submitForm() {
         const { username, email, password } = authDetails.value;
@@ -40,6 +36,7 @@ import { emailRule, notEmptyRule, testRules } from '~/tools/inputRules';
         if(isRegister.value) {
             // if is register, test also email validity
             if(!testRules(inputFieldRules.value.email, email)) return;
+            // TODO: username should not dumplicate, needed to query backend and function should be async
             user.registerUser(username, email, password, keepLogin.value)
         } else {
             user.loginUser(username, password, keepLogin.value)
@@ -77,9 +74,12 @@ import { emailRule, notEmptyRule, testRules } from '~/tools/inputRules';
         ></v-text-field>
         <v-text-field 
             v-model="authDetails.password" 
-            label="Your Password" type="password" 
+            label="Your Password" 
             clearable class="mt-3"
             :rules="inputFieldRules.password"
+            :type="showPassword?'text':'password'" 
+            :append-inner-icon="showPassword?'mdi-eye-off':'mdi-eye'"
+            @click:append-inner="showPassword=!showPassword"
         ></v-text-field>
         <v-checkbox v-model="keepLogin" 
             label="Keep me logged in!" 
@@ -93,7 +93,7 @@ import { emailRule, notEmptyRule, testRules } from '~/tools/inputRules';
         >
             {{ isRegister ? 'Register' : "Login"}}
         </v-btn>
-        <p @click="switchLoginMode" 
+        <p @click="isRegister=!isRegister" 
             class="text-center cursor-pointer text-sm"
         >I want to {{ isRegister ? 'Login' : "Register" }}!</p>
     </v-sheet>
