@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import Cookies from "universal-cookie";
-import { loginUser, registerUser } from '~/tools/actions/user_actions';
 import request from '~/tools/request';
 
 type userInfo = {
@@ -22,12 +21,18 @@ const useUser = defineStore('user', {
     }),
     actions: {
         requestUpdateUserInfo(info?:object, callback?:Function) {
+            const setLogin = () => {
+                new Cookies(null).set('current-user', `${this.userInformation.id}`)
+                this.isLoggedIn = true;
+                callback && callback(true);
+            }
             // if info is given, just update by given info
             if(info) {
                 this.userInformation = {
                     ...this.userInformation,
                     ...info
                 }
+                setLogin();
             } else {
                 // if user id is not set
                 if(this.userInformation.id === null) {
@@ -50,31 +55,46 @@ const useUser = defineStore('user', {
                         ...this.userInformation,
                         id, ...authorizedAccount
                     }
-                    this.isLoggedIn = true;
-                    // if has callback function passed, callback to let caller know update finished
-                    callback && callback(true)
+                    setLogin();
                 })
             }
         },
-        loginUser(username:string, email:string, password:string, keepLogin: boolean) {
-            return new Promise(async resolve=>{
-                const user = await loginUser(username, email, password, keepLogin);
-                if(user) {
-                    this.requestUpdateUserInfo(user, (status:boolean)=>{
-                        status && resolve(true);
-                    });
+        loginOrRegister(reqType:'signin'|'signup',username:string, password:string, keepLogin: boolean, email?:string) {
+            return new Promise(async resolve => {
+                if(reqType === 'signup' && !email) {
+                    resolve(false);
+                    return;
+                }
+
+                // request for login or register
+                const { id, authorizedAccount, detail } = await request(`/auth/${reqType}`, {
+                    body: (
+                        reqType === 'signin' ? 
+                        { username, password } : { username, email, password }
+                    )
+                })
+
+                // if there's any error, log error message to console
+                if(detail) {
+                    for(const { msg } of detail) console.error(msg);
+                    resolve(false);
+                    return;
+                }
+                // if successfully logged in
+                else {
+                    if(keepLogin) {
+                        localStorage.setItem('user-login-info', JSON.stringify({username, password}))
+                    }
+                    this.requestUpdateUserInfo({ id, ...authorizedAccount }, resolve)
+                    return;
                 }
             })
         },
+        loginUser(username:string, password:string, keepLogin: boolean) {
+            return this.loginOrRegister('signin', username, password, keepLogin);
+        },
         registerUser(username:string, email:string, password:string, keepLogin: boolean) {
-            return new Promise(async resolve=>{
-                const user = await registerUser(username, email, password, keepLogin);
-                if(user) {
-                    this.requestUpdateUserInfo(user, (status:boolean)=>{
-                        status && resolve(true);
-                    });
-                }
-            })
+            return this.loginOrRegister('signup', username, password, keepLogin, email);
         },
         logoutUser() {
             this.isLoggedIn = false;
