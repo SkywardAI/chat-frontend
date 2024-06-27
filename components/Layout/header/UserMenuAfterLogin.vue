@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import useUser from '~/store/user';
 
+
+const user = useUser();
 
 const userMenuItems = ref([
   {
@@ -41,6 +44,7 @@ const userMenuItems = ref([
           block
           color="primary"
           class="mt-4 py-4"
+          @click="user.logoutUser"
         >
           Logout
         </v-btn>
