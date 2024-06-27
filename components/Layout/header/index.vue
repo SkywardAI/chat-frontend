@@ -1,18 +1,9 @@
-<script setup>
-const userprofile = ref([
-  {
-    title: "My Profile",
-    desc: "Account Settings",
-  },
-  // {
-  //   title: "My Inbox",
-  //   desc: "Messages & Emails",
-  // },
-  // {
-  //   title: "My Tasks",
-  //   desc: "To-do and Daily Tasks",
-  // },
-]);
+<script setup lang="ts">
+import useUser from '~/store/user';
+import UserMenuBeforeLogin from './UserMenuBeforeLogin.vue';
+import UserMenuAfterLogin from './UserMenuAfterLogin.vue';
+
+const user = useUser();
 </script>
 
 <template>
@@ -25,7 +16,14 @@ const userprofile = ref([
         icon
       >
         <v-avatar size="35">
+          <!-- TODO: add src for empty avatar before login -->
+          <v-icon 
+            icon='mdi-account-circle' 
+            v-if="!user.isLoggedIn"
+            size="35" color="white"
+          ></v-icon>
           <img
+            v-else
             src="/images/profile/user2.jpg"
             width="35"
             alt="Julia"
@@ -33,33 +31,6 @@ const userprofile = ref([
         </v-avatar>
       </v-btn>
     </template>
-    <v-sheet
-      rounded="md"
-      width="250"
-      elevation="10"
-    >
-      <v-list
-        class="pa-4"
-        elevation="10"
-        rounded="md"
-      >
-        <v-list-item
-          v-for="(item, i) in userprofile"
-          :key="i"
-          class="py-2  mb-2"
-          :value="item"
-          :title="item.title"
-          :subtitle="item.desc"
-          rounded="md"
-        />
-        <v-btn
-          block
-          color="primary"
-          class="mt-4 py-4"
-        >
-          Logout
-        </v-btn>
-      </v-list>
-    </v-sheet>
+    <component :is="user.isLoggedIn ? UserMenuAfterLogin : UserMenuBeforeLogin" />
   </v-menu>
 </template>

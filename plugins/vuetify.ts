@@ -6,6 +6,7 @@ import PerfectScrollbar from "vue3-perfect-scrollbar";
 import VueApexCharts from "vue3-apexcharts";
 import VueTablerIcons from "vue-tabler-icons";
 import "@/assets/scss/style.scss";
+import { aliases, mdi } from 'vuetify/iconsets/mdi';
 
 import {
   BLUE_THEME,
@@ -20,6 +21,13 @@ export default defineNuxtPlugin((nuxtApp) => {
       themes: {
         BLUE_THEME,
       },
+    },
+    icons: {
+      defaultSet: 'mdi',
+      aliases,
+      sets: {
+        mdi
+      }
     },
     defaults: {
       VCard: {
