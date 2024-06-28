@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import useUser from '~/store/user';
 import { emailRule, notEmptyRule, testRules } from '~/tools/inputRules';
+import { ref } from 'vue';
 
     const savedLoginInfo = localStorage.getItem('user-login-info');
     const autoFill = savedLoginInfo ? JSON.parse(savedLoginInfo) : {};

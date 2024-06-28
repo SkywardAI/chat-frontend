@@ -1,6 +1,4 @@
 <script setup lang='ts'>
-import { genSentence } from '~/tools/genWord';
-import { Promotion } from '@element-plus/icons-vue'
 import Message from './Message.vue'
 import request from '~/tools/request';
 import { MessageRes } from './type';

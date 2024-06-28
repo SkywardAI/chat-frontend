@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import useUser from '~/store/user';
-
+import { ref } from 'vue';
 
 const user = useUser();
 

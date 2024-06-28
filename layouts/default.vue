@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useDisplay } from "vuetify";
+import { useHead } from "nuxt/app";
 useHead({
     title: "Rebel",
 });
-const drawer = ref(undefined || true);
+const drawer = ref(true);
 const innerW = window.innerWidth;
 const { mdAndUp, mdAndDown } = useDisplay();
 onMounted(() => {

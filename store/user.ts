@@ -60,34 +60,34 @@ const useUser = defineStore('user', {
             }
         },
         loginOrRegister(reqType:'signin'|'signup',username:string, password:string, keepLogin: boolean, email?:string) {
-            return new Promise(async resolve => {
+            return new Promise(resolve => {
                 if(reqType === 'signup' && !email) {
                     resolve(false);
                     return;
                 }
 
                 // request for login or register
-                const { id, authorizedAccount, detail } = await request(`/auth/${reqType}`, {
+                request(`/auth/${reqType}`, {
                     body: (
                         reqType === 'signin' ? 
                         { username, password } : { username, email, password }
                     )
-                })
-
-                // if there's any error, log error message to console
-                if(detail) {
-                    for(const { msg } of detail) console.error(msg);
-                    resolve(false);
-                    return;
-                }
-                // if successfully logged in
-                else {
-                    if(keepLogin) {
-                        localStorage.setItem('user-login-info', JSON.stringify({username, password}))
+                }).then(({ id, authorizedAccount, detail })=>{
+                    // if there's any error, log error message to console
+                    if(detail) {
+                        for(const { msg } of detail) console.error(msg);
+                        resolve(false);
+                        return;
                     }
-                    this.requestUpdateUserInfo({ id, ...authorizedAccount }, resolve)
-                    return;
-                }
+                    // if successfully logged in
+                    else {
+                        if(keepLogin) {
+                            localStorage.setItem('user-login-info', JSON.stringify({username, password}))
+                        }
+                        this.requestUpdateUserInfo({ id, ...authorizedAccount }, resolve)
+                        return;
+                    }
+                })
             })
         },
         loginUser(username:string, password:string, keepLogin: boolean) {

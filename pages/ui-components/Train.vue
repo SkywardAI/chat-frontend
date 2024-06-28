@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { ElForm,  } from 'element-plus';
+import type { ElForm } from 'element-plus';
 import request from '~/tools/request';
 
 const form = reactive({

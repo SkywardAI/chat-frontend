@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ClockHour4Icon, MessageCircle2Icon, MessageCircleIcon } from 'vue-tabler-icons';
+import { ClockHour4Icon, MessageCircle2Icon } from 'vue-tabler-icons';
 
 </script>
 

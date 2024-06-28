@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { markRaw, watch } from "vue";
+import { markRaw } from "vue";
 import sidebarItems from "./sidebarItems";
 import { useTicketStore } from "~/store/ticket";
 

@@ -1,19 +1,14 @@
 import {
-  BorderAllIcon,
-  AlertCircleIcon,
-  CircleDotIcon,
-  BoxMultiple1Icon,
-  AdjustmentsHorizontalIcon,
   LayoutDashboardIcon,
   MessageCircleIcon,
-  SettingsIcon
-
+  SettingsIcon,
+  TablerIconComponent
 } from 'vue-tabler-icons';
 
 export interface menu {
   header?: string;
   title?: string;
-  icon?: any;
+  icon?: TablerIconComponent;
   to?: string;
   chip?: string;
   chipBgColor?: string;

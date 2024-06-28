@@ -62,7 +62,7 @@ const option = {
 			}
 		}
 	]
-} as any;
+}
 
 </script>
 <template>
