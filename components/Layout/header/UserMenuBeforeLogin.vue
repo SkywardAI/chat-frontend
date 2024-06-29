@@ -22,8 +22,14 @@ import { emailRule, notEmptyRule, testRules } from '~/tools/inputRules';
     })
 
     const isRegister = ref(false);
-    const keepLogin = ref(false);
+    const keepLogin = ref(!!savedLoginInfo);
     const showPassword = ref(false);
+
+    watch(keepLogin, keepLoginOption => {
+        if(!keepLoginOption) {
+            localStorage.removeItem('user-login-info');
+        }
+    })
 
     function submitForm() {
         const { username, email, password } = authDetails.value;
