@@ -99,6 +99,7 @@ const useUser = defineStore('user', {
         },
         logoutUser() {
             this.isLoggedIn = false;
+            new Cookies(null).remove('current-user');
             this.userInformation = { id: null } as userInfo;
         }
     }
