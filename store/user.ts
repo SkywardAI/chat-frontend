@@ -22,7 +22,7 @@ const useUser = defineStore('user', {
     actions: {
         requestUpdateUserInfo(info?:object, callback?:Function) {
             const setLogin = () => {
-                new Cookies(null).set('current-user', `${this.userInformation.id}`)
+                new Cookies(null).set('current-user', {id:this.userInformation.id})
                 this.isLoggedIn = true;
                 callback && callback(true);
             }
@@ -39,7 +39,7 @@ const useUser = defineStore('user', {
                     const currentUser = new Cookies(null).get('current-user')
                     // if current user is in cookies - means we logged in but somehow lost info, e.g. refreshed page
                     if(currentUser) {
-                        this.userInformation.id = JSON.parse(currentUser).id
+                        this.userInformation.id = currentUser.id
                     }
                     // callback false status and return
                     else {
