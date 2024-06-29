@@ -5,6 +5,7 @@ import getVersions from '~/tools/getVersions';
     const backendVersion = ref('Loading');
 
     getVersions('frontend').then(version=>frontendVersion.value = version);
+    getVersions('backend').then(version=>backendVersion.value = version);
 </script>
 <template>
     <div class="p-10 pb-5">
