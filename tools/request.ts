@@ -12,7 +12,7 @@ export default (url: string, options?: Options, isEmptyHeader?: boolean) => {
 		method: 'GET'
 	}:{
 		method: "GET",
-		'Content-Type': 'application/json'
+		headers: {'Content-Type': 'application/json'}
 	}
 	const body =  
 	(typeof options?.body === 'object' && !(options.body instanceof FormData)) ? 
