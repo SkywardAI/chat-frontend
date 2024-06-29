@@ -68,6 +68,7 @@ const useUser = defineStore('user', {
 
                 // request for login or register
                 const { id, authorizedAccount, detail } = await request(`/auth/${reqType}`, {
+                    method: 'POST',
                     body: (
                         reqType === 'signin' ? 
                         { username, password } : { username, email, password }
