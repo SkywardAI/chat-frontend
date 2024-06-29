@@ -4,6 +4,7 @@ import UserMenuBeforeLogin from './UserMenuBeforeLogin.vue';
 import UserMenuAfterLogin from './UserMenuAfterLogin.vue';
 
 const user = useUser();
+user.requestUpdateUserInfo()
 </script>
 
 <template>
