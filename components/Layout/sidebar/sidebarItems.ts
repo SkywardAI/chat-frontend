@@ -6,7 +6,8 @@ import {
   AdjustmentsHorizontalIcon,
   LayoutDashboardIcon,
   MessageCircleIcon,
-  SettingsIcon
+  SettingsIcon,
+  InfoCircleIcon
 
 } from 'vue-tabler-icons';
 
@@ -60,6 +61,11 @@ const sidebarItem: menu[] = [
     title: 'Analytics',
     icon: MessageCircleIcon,
     to: '/ui-components/analytics'
+  },
+  {
+    title: 'Information',
+    icon: InfoCircleIcon,
+    to: '/ui-components/information'
   }
 ];
 

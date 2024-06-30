@@ -9,6 +9,11 @@ export default defineNuxtConfig({
     //   })
     // }
   ],
+  runtimeConfig: {
+    public: {
+      FRONTEND_APP_VERSION: process.env.FRONTEND_APP_VERSION
+    }
+  },
   css: [
     '@/assets/css/unit.css'
   ],
