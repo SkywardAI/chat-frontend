@@ -1,9 +1,9 @@
+# Rebel
 
-[![Release Drafter 🚀](https://github.com/SkywardAI/chat-frontend/actions/workflows/release-drafter.yml/badge.svg)](https://github.com/SkywardAI/chat-frontend/actions/workflows/release-drafter.yml)
+Frontend for AI-pilot chatbot
 
-# Nuxt 3 Minimal Starter
+[![Rebel CI/CD 🚀](https://github.com/SkywardAI/chat-frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/SkywardAI/chat-frontend/actions/workflows/ci.yml) [![Release Drafter 🚀](https://github.com/SkywardAI/chat-frontend/actions/workflows/release-drafter.yml/badge.svg)](https://github.com/SkywardAI/chat-frontend/actions/workflows/release-drafter.yml)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
 
